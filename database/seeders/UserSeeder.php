@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
             'name' => 'Administrator',
             'email' => 'admin@darmabangsa.sch.id',
             'password' => bcrypt('secret123'),
+            'roles' => "ADMIN",
             'created_at' =>  Carbon::now()->format('Y-m-d H:i:s'),
         ]);
     }
