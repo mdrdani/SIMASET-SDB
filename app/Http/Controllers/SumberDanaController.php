@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SumberDanaRequest;
 use App\Models\SumberDana;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class SumberDanaController extends Controller
@@ -45,6 +46,7 @@ class SumberDanaController extends Controller
         $data = $request->all();
         SumberDana::create($data);
 
+        Toastr::success('Tambah Data Sukses', 'Success');
         return redirect()->route('referensisumberdana.index');
     }
 
@@ -90,6 +92,7 @@ class SumberDanaController extends Controller
 
         $item->update($data);
 
+        Toastr::success('Update Data Sukses', 'Success');
         return redirect()->route('referensisumberdana.index');
     }
 
@@ -106,6 +109,7 @@ class SumberDanaController extends Controller
 
         $item->delete();
 
+        Toastr::error('Delete Data Sukses', 'Success');
         return redirect()->route('referensisumberdana.index');
     }
 }

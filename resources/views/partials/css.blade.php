@@ -17,4 +17,8 @@
     <!-- Custom Theme Style -->
     <link href="{{asset("build/css/custom.min.css")}}" rel="stylesheet">
 
+    {{-- Toastr --}}
+    <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> 
+   
+
     @yield('css')
