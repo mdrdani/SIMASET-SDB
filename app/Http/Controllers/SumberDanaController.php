@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SumberDanaRequest;
+use App\Models\SumberDana;
 use Illuminate\Http\Request;
 
 class SumberDanaController extends Controller
@@ -14,7 +16,10 @@ class SumberDanaController extends Controller
     public function index()
     {
         //
-        return view('backend.sumberdana.index');
+        $datas = SumberDana::orderBy('created_at', 'desc')->get();
+        return view('backend.sumberdana.index',
+        ['datas' => $datas]
+    );
     }
 
     /**
@@ -34,9 +39,13 @@ class SumberDanaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SumberDanaRequest $request)
     {
         //
+        $data = $request->all();
+        SumberDana::create($data);
+
+        return redirect()->route('referensisumberdana.index');
     }
 
     /**
@@ -59,6 +68,10 @@ class SumberDanaController extends Controller
     public function edit($id)
     {
         //
+        $data = SumberDana::findOrFail($id);
+
+        return view('backend.sumberdana.edit',
+        ['data' => $data]);
     }
 
     /**
@@ -68,9 +81,16 @@ class SumberDanaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SumberDanaRequest $request, $id)
     {
         //
+        $data = $request->all();
+
+        $item = SumberDana::findOrFail($id);
+
+        $item->update($data);
+
+        return redirect()->route('referensisumberdana.index');
     }
 
     /**
@@ -82,5 +102,10 @@ class SumberDanaController extends Controller
     public function destroy($id)
     {
         //
+        $item = SumberDana::findOrFail($id);
+
+        $item->delete();
+
+        return redirect()->route('referensisumberdana.index');
     }
 }

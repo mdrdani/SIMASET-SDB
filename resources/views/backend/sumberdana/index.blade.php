@@ -34,14 +34,20 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Lorem ipsum dolor sit amet</td>
-                          <td>
-                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                            <a href="#" class="btn btn-info btn-sm">Hapus</a>
-                          </td>
+                        @foreach ($datas as $index => $data)
+                            <tr>
+                                <th scope="row">{{ $index }}</th>
+                                <td>{{ $data->name }}</td>
+                                <td>
+                                  <a href="{{ route('referensisumberdana.edit', $data->id) }}" class="btn btn-info btn-sm">Edit</a>
+                                  <form action="{{ route('referensisumberdana.destroy', $data->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Menghapus Data ini?')">
+                                  @csrf
+                                  <input type="hidden" value="DELETE" name="_method">
+                                      <input type="submit" class="btn btn-info btn-sm" value="Hapus">
+                                  </form>
+                                </td>
                         </tr>
+                        @endforeach
                       </tbody>
                     </table>
 

@@ -26,13 +26,14 @@
 								</div>
 								<div class="x_content">
 									<br />
-									<form  action="{{ route('referensisumberdana.store') }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
+									<form  action="{{ route('referensisumberdana.update', $data->id) }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
                     					@csrf
+                                        @method('PUT')
 										<div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="name">Nama <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id="name" name="name" required="required" class="form-control ">
+												<input type="text" id="name" name="name" required="required" class="form-control " value="{{ $data->name }}">
 											</div>
 										</div>
 										
@@ -41,7 +42,7 @@
 											<div class="col-md-6 col-sm-6 offset-md-3">
                         						<a href="{{ route('referensisumberdana.index') }}" class="btn btn-info">Batal</a>
 												<button class="btn btn-info" type="reset">Reset</button>
-												<button type="submit" class="btn btn-success">Simpan</button>
+												<button type="submit" class="btn btn-success">Update</button>
 											</div>
 										</div>
 
