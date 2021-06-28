@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DepartementRequest;
+use App\Models\Departement;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
 
 class DepartemenController extends Controller
 {
@@ -14,7 +17,9 @@ class DepartemenController extends Controller
     public function index()
     {
         //
-        return view('backend.departemen.index');
+        $datas = Departement::orderBy('created_at', 'desc')->get();
+        return view('backend.departemen.index',
+        ['datas' => $datas]);
     }
 
     /**
@@ -34,9 +39,16 @@ class DepartemenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DepartementRequest $request)
     {
         //
+        $item = $request->all();
+
+        Departement::create($item);
+
+        Toastr::success('Tambah Data Sukses', 'Success');
+        return redirect()->route('referensidepartemen.index');
+        
     }
 
     /**
@@ -59,6 +71,9 @@ class DepartemenController extends Controller
     public function edit($id)
     {
         //
+        $data = Departement::findOrFail($id);
+        return view('backend.departemen.edit',
+        ['data' => $data]);
     }
 
     /**
@@ -68,9 +83,17 @@ class DepartemenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DepartementRequest $request, $id)
     {
         //
+        $data = $request->all();
+
+        $item = Departement::findOrFail($id);
+
+        $item->update($data);
+
+         Toastr::success('Update Data Sukses', 'Success');
+         return redirect()->route('referensidepartemen.index');
     }
 
     /**
@@ -82,5 +105,11 @@ class DepartemenController extends Controller
     public function destroy($id)
     {
         //
+        $data = Departement::findOrFail($id);
+
+        $data->delete();
+
+        Toastr::error('Delete Data Sukses', 'Success');
+        return redirect()->route('referensidepartemen.index');
     }
 }
