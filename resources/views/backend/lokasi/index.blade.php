@@ -36,17 +36,27 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Lorem ipsum dolor sit amet</td>
-                          <td>120 m2</td>
-                          <td>DIGUNAKAN</td>
+                        @foreach ($datas as $index => $data)
+                            <tr>
+                          <th scope="row">{{ $index }}</th>
+                          <td>{{ $data->name }}</td>
+                          <td>{{ $data->luas }}</td>
+                          <td>{{ $data->status }}</td>
                           <td>
+                            @if ($data->status === "TIDAK DIGUNAKAN")                              
+                                <a href="#" class="btn btn-info btn-sm disabled">Sub Lokasi</a>
+                            @else
                               <a href="{{ route('referensisublokasi.index') }}" class="btn btn-info btn-sm">Sub Lokasi</a>
-                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                            <a href="#" class="btn btn-info btn-sm">Hapus</a>
+                            @endif
+                            <a href="{{ route('referensilokasi.edit', $data->id) }}" class="btn btn-info btn-sm">Edit</a>
+                            <form action="{{ route('referensilokasi.destroy', $data->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Menghapus Data ini?')">
+                            @csrf
+                            <input type="hidden" value="DELETE" name="_method">
+                                <input type="submit" class="btn btn-info btn-sm" value="Hapus">
+                            </form>
                           </td>
                         </tr>
+                        @endforeach
                       </tbody>
                     </table>
 

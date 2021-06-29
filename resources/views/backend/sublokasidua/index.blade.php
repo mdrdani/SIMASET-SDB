@@ -25,6 +25,7 @@
                   </div>
                   <div class="x_content">
                       <a href="{{ route('referensisublokasidua.create') }}" class="btn btn-sm btn-info">Tambah Data</a>
+                      <a href="{{ route('referensisublokasi.index') }}" class="btn btn-sm btn-info">Kembali</a>
                     <table class="table table-hover">
                       <thead>
                         <tr>

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-    Tambah Data
+    Update Data
 @endsection
 
 @section('body')
@@ -26,13 +26,14 @@
 								</div>
 								<div class="x_content">
 									<br />
-									<form  action="{{ route('referensilokasi.store') }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
+									<form  action="{{ route('referensilokasi.update', $data->id) }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
                     					@csrf
+                                        @method('PUT')
 										<div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="name">Nama <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id="name" name="name" required="required" class="form-control ">
+												<input type="text" id="name" name="name" required="required" class="form-control " value="{{ $data->name }}">
 											</div>
 										</div>
 
@@ -40,7 +41,7 @@
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="alias">Alias
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id="alias" name="alias"  class="form-control ">
+												<input type="text" id="alias" name="alias"  class="form-control " value="{{ $data->alias }}">
 											</div>
 										</div>
 
@@ -48,7 +49,7 @@
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="luas">Luas
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id="luas" name="luas"  class="form-control ">
+												<input type="text" id="luas" name="luas"  class="form-control " value="{{ $data->luas }}">
 											</div>
 										</div>
 
@@ -57,6 +58,8 @@
 											</label>
 											<div class="col-md-6 col-sm-6 ">
 												<select name="status" id="status" class="select2_group form-control">
+                                                    <option value="{{ $data->id }}">{{ $data->status }}</option>
+													<option value="">------------------------------------------------------------------</option>
                                                     <option value="DI GUNAKAN">Di Gunakan</option>
                                                     <option value="TIDAK DIGUNAKAN">Tidak Di Gunakan</option>
                                                 </select>

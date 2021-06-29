@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lokasi;
 use Illuminate\Http\Request;
+use App\Http\Requests\LokasiRequest;
+use Brian2694\Toastr\Facades\Toastr;
 
 class LokasiController extends Controller
 {
@@ -14,7 +17,9 @@ class LokasiController extends Controller
     public function index()
     {
         //
-        return view('backend.lokasi.index');
+        $datas = Lokasi::orderBy('created_at', 'desc')->get();
+        return view('backend.lokasi.index',
+        ['datas' => $datas]);
     }
 
     /**
@@ -34,9 +39,15 @@ class LokasiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LokasiRequest $request)
     {
         //
+        $data = $request->all();
+
+        Lokasi::create($data);
+
+        Toastr::success('Tambah Data Sukses', 'Success');
+        return redirect()->route('referensilokasi.index');
     }
 
     /**
@@ -59,6 +70,9 @@ class LokasiController extends Controller
     public function edit($id)
     {
         //
+        $data = Lokasi::findOrFail($id);
+        return view('backend.lokasi.edit',
+        ['data' => $data]);
     }
 
     /**
@@ -68,9 +82,18 @@ class LokasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LokasiRequest $request, $id)
     {
         //
+        $data = $request->all();
+
+        $item = Lokasi::findOrFail($id);
+
+        $item->update($data);
+
+        Toastr::success('Update Data Sukses', 'Success');
+        return redirect()->route('referensilokasi.index');
+
     }
 
     /**
@@ -82,5 +105,10 @@ class LokasiController extends Controller
     public function destroy($id)
     {
         //
+        $data = Lokasi::findOrFail($id);
+        $data->delete();
+
+        Toastr::error('Delete Data Sukses', 'Success');
+        return redirect()->route('referensilokasi.index');
     }
 }
