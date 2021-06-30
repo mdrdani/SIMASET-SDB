@@ -6,25 +6,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class SubLokasi extends Model
+class SubLokasiDua extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name','alias','luas','status','lokasis_id'
+        'name','alias','luas','status','sub_lokasis_id'
     ];
 
     protected $hidden = [
 
     ];
 
-    public function lokasis()
+    public function sublokasi()
     {
-        return $this->belongsTo(Lokasi::class);
+        return $this->belongsTo(SubLokasi::class);
     }
 
-    public function sublokasidua()
-    {
-        return $this->hasMany(SubLokasiDua::class);
-    }
 }

@@ -37,7 +37,7 @@ Route::name('referensi')->middleware('auth')->group(function() {
     Route::resource('/sumberdana', SumberDanaController::class);
     Route::resource('/lokasi', LokasiController::class);
     Route::resource('/lokasi/{id}/sublokasi', SubLokasiController::class);
-    Route::resource('/lokasi/1/sublokasi/1/sublokasidua', SubLokasiDuaController::class);
+    Route::resource('/lokasi/{id}/sublokasi/{sublokasi}/sublokasidua', SubLokasiDuaController::class);
     Route::resource('/departemen', DepartemenController::class);
 });
 

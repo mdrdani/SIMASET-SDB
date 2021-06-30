@@ -13,7 +13,7 @@
         <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Sub Lokasi <small>Data Lengkap</small></h2>
+                    <h2>Sub Lokasi {{ $data->name }}<small>Data Lengkap</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -44,7 +44,7 @@
                           <td>{{ $item->luas }}</td>
                           <td>{{ $item->status }}</td>
                           <td>
-                              <a href="{{ route('referensisublokasidua.index', $item->id) }}" class="btn btn-info btn-sm">Sub Lokasi</a>
+                              <a href="{{ route('referensisublokasidua.index', ['id' => $item->lokasis->id, 'sublokasi' => $item->id]) }}" class="btn btn-info btn-sm">Sub Lokasi</a>
                             <a href="{{ route('referensisublokasi.edit', ['id' => $item->lokasis->id, 'sublokasi' => $item->id]) }}" class="btn btn-info btn-sm">Edit</a>
                             <form action="{{ route('referensisublokasi.destroy' , ['id' => $item->lokasis->id, 'sublokasi' => $item->id]) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Menghapus Data ini?')">
                               @csrf
