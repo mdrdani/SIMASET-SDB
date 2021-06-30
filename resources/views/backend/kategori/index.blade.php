@@ -4,6 +4,16 @@
     Kategori
 @endsection
 
+@section('css')
+     <!-- Datatables -->
+    
+    <link href="{{ asset("vendors/datatables.net-bs/css/dataTables.bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css") }}" rel="stylesheet">
+@endsection
+
 @section('body')
     <div class="right_col" role="main">
         <div class="title_left">
@@ -25,7 +35,7 @@
                   </div>
                   <div class="x_content">
                       <a href="{{ route('assetkategori.create') }}" class="btn btn-sm btn-info">Tambah Data</a>
-                    <table class="table table-hover">
+                    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                         <tr>
                           <th>No</th>
@@ -34,14 +44,19 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Lorem ipsum dolor sit amet</td>
+                        @foreach ($datas as $index => $data)
+                            <tr>
+                          <th scope="row">{{ $index+1 }}</th>
+                          <td>{{ $data->name }}</td>
                           <td>
-                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                            <a href="#" class="btn btn-info btn-sm">Hapus</a>
-                          </td>
+                            <a href="{{ route('assetkategori.edit', $data->id) }}" class="btn btn-info btn-sm">Edit</a>
+                            <form action="{{ route('assetkategori.destroy', $data->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Anda Yakin Menghapus Data Ini?')">
+                            @csrf
+                            <input type="hidden" value="DELETE" name="_method">
+                              <input type="submit" class="btn btn-sm btn-info" value="Hapus">
+                            </form>
                         </tr>
+                        @endforeach
                       </tbody>
                     </table>
 
@@ -49,4 +64,20 @@
                 </div>
               </div>
     </div>
+@endsection
+
+@section('js')
+    <!-- Datatables -->
+    <script src="{{ asset("vendors/datatables.net/js/jquery.dataTables.min.js") }}"></script>
+    <script src="{{ asset("vendors/datatables.net-bs/js/dataTables.bootstrap.min.js") }}"></script>
+    <script src="{{ asset("vendors/datatables.net-buttons/js/dataTables.buttons.min.js") }}"></script>
+    <script src="{{ asset("vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js") }}"></script>
+    <script src="{{ asset("vendors/datatables.net-buttons/js/buttons.flash.min.js") }}"></script>
+    <script src="{{ asset("vendors/datatables.net-buttons/js/buttons.html5.min.js") }}"></script>
+    <script src="{{ asset("vendors/datatables.net-buttons/js/buttons.print.min.js") }}"></script>
+    <script src="{{ asset("vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js") }}"></script>
+    <script src="{{ asset("vendors/datatables.net-keytable/js/dataTables.keyTable.min.js") }}"></script>
+    <script src="{{ asset("vendors/datatables.net-responsive/js/dataTables.responsive.min.js") }}"></script>
+    <script src="{{ asset("vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js") }}"></script>
+    <script src="{{ asset("vendors/datatables.net-scroller/js/dataTables.scroller.min.js") }}"></script>
 @endsection

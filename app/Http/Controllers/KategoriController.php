@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
+use App\Http\Requests\CategoriesRequest;
 
 class KategoriController extends Controller
 {
@@ -14,7 +17,8 @@ class KategoriController extends Controller
     public function index()
     {
         //
-        return view('backend.kategori.index');
+        $datas = Categories::orderBy('name', 'asc')->get();
+        return view('backend.kategori.index', ['datas' => $datas]);
     }
 
     /**
@@ -34,9 +38,15 @@ class KategoriController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoriesRequest $request)
     {
         //
+        $data = $request->all();
+
+        Categories::create($data);
+
+        Toastr::success('Tambah Data Sukses', 'Success');
+        return redirect()->back();
     }
 
     /**
@@ -59,6 +69,8 @@ class KategoriController extends Controller
     public function edit($id)
     {
         //
+        $data = Categories::findOrFail($id);
+        return view('backend.kategori.edit',  ['data' => $data]);
     }
 
     /**
@@ -68,9 +80,18 @@ class KategoriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoriesRequest $request, $id)
     {
         //
+        $data = $request->all();
+
+        $item = Categories::findOrFail($id);
+
+        $item->update($data);
+
+        Toastr::success('Update Data Sukses', 'Success');
+        return redirect()->route('assetkategori.index');
+
     }
 
     /**
@@ -82,5 +103,11 @@ class KategoriController extends Controller
     public function destroy($id)
     {
         //
+        $data = Categories::findOrFail($id);
+
+        $data->delete();
+
+        Toastr::error('Delete Data Sukses', 'Success');
+        return redirect()->route('assetkategori.index');
     }
 }
