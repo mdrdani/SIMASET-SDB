@@ -58,7 +58,7 @@
 											</label>
 											<div class="col-md-6 col-sm-6 ">
 												<select name="status" id="status" class="select2_group form-control">
-                                                    <option value="{{ $data->id }}">{{ $data->status }}</option>
+                                                    <option value="{{ $data->status }}">{{ $data->status }}</option>
 													<option value="">------------------------------------------------------------------</option>
                                                     <option value="DI GUNAKAN">Di Gunakan</option>
                                                     <option value="TIDAK DIGUNAKAN">Tidak Di Gunakan</option>
@@ -71,7 +71,7 @@
 											<div class="col-md-6 col-sm-6 offset-md-3">
                                                 <a href="{{ route('referensilokasi.index') }}" class="btn btn-info">Batal</a>
 												<button class="btn btn-info" type="reset">Reset</button>
-												<button type="submit" class="btn btn-success">Simpan</button>
+												<button type="submit" class="btn btn-success">Update</button>
 											</div>
 										</div>
 

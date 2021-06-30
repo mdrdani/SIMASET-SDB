@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lokasi;
+use App\Models\SubLokasi;
 use Illuminate\Http\Request;
+use Brian2694\Toastr\Facades\Toastr;
+use App\Http\Requests\SubLokasiRequest;
 
 class SubLokasiController extends Controller
 {
@@ -11,10 +15,12 @@ class SubLokasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         //
-        return view('backend.sublokasi.index');
+        $data = Lokasi::findOrFail($id);
+        $items = SubLokasi::where('lokasis_id', $id)->orderBy("created_at", "asc")->get();
+        return view('backend.sublokasi.index', ['data' => $data, 'items' => $items,]);
     }
 
     /**
@@ -22,10 +28,11 @@ class SubLokasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         //
-        return view('backend.sublokasi.add');
+        $data = Lokasi::findOrFail($id);
+        return view('backend.sublokasi.add', ['data'=> $data]);
     }
 
     /**
@@ -34,9 +41,15 @@ class SubLokasiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SubLokasiRequest $request)
     {
         //
+        $data = $request->all();
+
+        SubLokasi::create($data);
+
+        Toastr::success('Tambah Data Sukses', 'Success');
+        return redirect()->back();
     }
 
     /**
@@ -56,9 +69,13 @@ class SubLokasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $sublokasis)
     {
         //
+        $data = Lokasi::findOrFail($id);
+        $item = SubLokasi::find($sublokasis);
+        // dd($item);
+        return view('backend.sublokasi.edit', ['data' => $data,'item' => $item]);
     }
 
     /**
@@ -68,9 +85,18 @@ class SubLokasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SubLokasiRequest $request, $id, $sublokasis)
     {
         //
+        $data = $request->all();
+
+        $lokasi = Lokasi::findOrFail($id);
+        $item = SubLokasi::findOrFail($sublokasis);
+
+        $item->update($data);
+
+        Toastr::success('Update Data Sukses', 'Success');
+        return redirect()->route('referensisublokasi.index', ['id' => $item->lokasis->id]);
     }
 
     /**
@@ -79,8 +105,14 @@ class SubLokasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $sublokasi)
     {
         //
+        $data = Lokasi::findOrFail($id);
+        $item = SubLokasi::findOrFail($sublokasi);
+        $item->delete();
+
+        Toastr::error('Delete Data Sukses', 'Success');
+        return redirect()->route('referensisublokasi.index', ['id' => $item->lokasis->id]);
     }
 }

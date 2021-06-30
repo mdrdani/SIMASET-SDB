@@ -46,7 +46,7 @@
                             @if ($data->status === "TIDAK DIGUNAKAN")                              
                                 <a href="#" class="btn btn-info btn-sm disabled">Sub Lokasi</a>
                             @else
-                              <a href="{{ route('referensisublokasi.index') }}" class="btn btn-info btn-sm">Sub Lokasi</a>
+                              <a href="{{ route('referensisublokasi.index', $data->id) }}" class="btn btn-info btn-sm">Sub Lokasi</a>
                             @endif
                             <a href="{{ route('referensilokasi.edit', $data->id) }}" class="btn btn-info btn-sm">Edit</a>
                             <form action="{{ route('referensilokasi.destroy', $data->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Menghapus Data ini?')">

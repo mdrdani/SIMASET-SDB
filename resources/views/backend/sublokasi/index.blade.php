@@ -24,7 +24,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                      <a href="{{ route('referensisublokasi.create') }}" class="btn btn-sm btn-info">Tambah Data</a>
+                      <a href="{{ route('referensisublokasi.create', $data->id) }}" class="btn btn-sm btn-info">Tambah Data</a>
                       <a href="{{ route('referensilokasi.index') }}" class="btn btn-sm btn-info">Kembali</a>
                     <table class="table table-hover">
                       <thead>
@@ -37,17 +37,23 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>Lorem ipsum dolor sit amet</td>
-                          <td>120 m2</td>
-                          <td>DIGUNAKAN</td>
+                      @foreach ($items as $index => $item)
+                            <tr>
+                          <th scope="row">{{ $index }}</th>
+                          <td>{{ $item->name }}</td>
+                          <td>{{ $item->luas }}</td>
+                          <td>{{ $item->status }}</td>
                           <td>
-                              <a href="{{ route('referensisublokasidua.index') }}" class="btn btn-info btn-sm">Sub Lokasi</a>
-                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                            <a href="#" class="btn btn-info btn-sm">Hapus</a>
+                              <a href="{{ route('referensisublokasidua.index', $item->id) }}" class="btn btn-info btn-sm">Sub Lokasi</a>
+                            <a href="{{ route('referensisublokasi.edit', ['id' => $item->lokasis->id, 'sublokasi' => $item->id]) }}" class="btn btn-info btn-sm">Edit</a>
+                            <form action="{{ route('referensisublokasi.destroy' , ['id' => $item->lokasis->id, 'sublokasi' => $item->id]) }}" class="d-inline" method="POST" onsubmit="return confirm('Yakin Menghapus Data ini?')">
+                              @csrf
+                            <input type="hidden" value="DELETE" name="_method">
+                                <input type="submit" class="btn btn-info btn-sm" value="Hapus">
+                            </form>
                           </td>
                         </tr>
+                      @endforeach
                       </tbody>
                     </table>
 

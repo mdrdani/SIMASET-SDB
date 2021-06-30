@@ -17,7 +17,7 @@ class LokasiController extends Controller
     public function index()
     {
         //
-        $datas = Lokasi::orderBy('created_at', 'desc')->get();
+        $datas = Lokasi::orderBy('created_at', 'asc')->get();
         return view('backend.lokasi.index',
         ['datas' => $datas]);
     }
