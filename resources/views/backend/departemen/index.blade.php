@@ -37,7 +37,7 @@
                       <tbody>
                         @foreach ($datas as $index => $data)
                             <tr>
-                              <th scope="row">{{ $index }}</th>
+                              <th scope="row">{{ $index+1 }}</th>
                               <td>{{ $data->name }}</td>
                               <td>{{ $data->keterangan }}</td>
                               <td>

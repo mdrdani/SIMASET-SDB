@@ -39,7 +39,7 @@
                       <tbody>
                         @foreach ($items as $index => $item)
                             <tr>
-                          <th scope="row">{{ $index }}</th>
+                          <th scope="row">{{ $index+1 }}</th>
                           <td>{{ $item->name }}</td>
                           <td>{{ $item->luas }}</td>
                           <td>{{ $item->status }}</td>

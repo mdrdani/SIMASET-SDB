@@ -36,7 +36,7 @@
                       <tbody>
                         @foreach ($datas as $index => $data)
                             <tr>
-                                <th scope="row">{{ $index }}</th>
+                                <th scope="row">{{ $index+1 }}</th>
                                 <td>{{ $data->name }}</td>
                                 <td>
                                   <a href="{{ route('referensisumberdana.edit', $data->id) }}" class="btn btn-info btn-sm">Edit</a>
