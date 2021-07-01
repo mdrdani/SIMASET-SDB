@@ -6,20 +6,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Categories extends Model
+class Asset extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name'
+        'categories_id','kode','name','ukuran','foto'
     ];
 
     protected $hidden = [
 
     ];
 
-    public function assets()
+    public function categories()
     {
-        return $this->hasMany(Asset::class);
+        return $this->belongsTo(Categories::class);
+    }
+
+    public function asset_histories()
+    {
+        return $this->hasMany(AssetHistory::class);
     }
 }

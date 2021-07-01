@@ -41,21 +41,35 @@
                           <th>No</th>
                           <th>Kode Asset</th>
                           <th>Nama Asset</th>
+                          <th>Foto</th>
                           <th>Action</th>
                         </tr>
                       </thead>
 
 
                       <tbody>
-                        <tr>
-                          <td>Tiger Nixon</td>
-                          <td>System Architect</td>
-                          <td>Edinburgh</td>
+                        @foreach ($datas as $index => $data)
+                            <tr>
+                          <td>{{ $index+1 }}</td>
+                          <td>{{ $data->kode }}</td>
+                          <td>{{ $data->name }}</td>
                           <td>
-                            <a href="{{ route('assetassetseri.index') }}" class="btn btn-info btn-sm">Nomor Seri Asset</a>
-                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                            <a href="#" class="btn btn-info btn-sm">Hapus</a></td>
+                            @if($data->foto != NULL)
+                                    <img src="{{ url('storage/foto_asset/'. $data->foto) }}" alt="" width="100px">
+                            @else
+                                    Tidak Ada
+                            @endif
+                          </td>
+                          <td>
+                            <a href="{{ route('assetassetseri.index', $data->id) }}" class="btn btn-info btn-sm">Nomor Seri Asset</a>
+                            <a href="{{ route('assetasset.edit', $data->id) }}" class="btn btn-info btn-sm">Edit</a>
+                            <form action="{{ route('assetasset.destroy', $data->id) }}" class="d-inline" method="POST" onsubmit="return confirm('Apakah Yakin Menghapus Data ini?')">
+                              @csrf
+                              <input type="hidden" value="DELETE" name="_method">
+                                <input type="submit" class="btn btn-info btn-sm" value="Hapus">
+                            </form>
                         </tr>
+                        @endforeach
 
                       </tbody>
                     </table>

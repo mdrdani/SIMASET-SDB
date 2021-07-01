@@ -26,14 +26,16 @@
 								</div>
 								<div class="x_content">
 									<br />
-									<form  action="{{ route('assetasset.store') }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data">
+									<form  action="{{ route('assetasset.update', $data->id) }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST" enctype="multipart/form-data">
                     					@csrf
-
+                                        @method('PUT')
 										<div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="ketegori">Kategori <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
 												<select name="categories_id" id="ketegori" class="select2_group form-control">
+                                                    <option value="{{ $data->categories->id }}">{{ $data->categories->name }}</option>
+                                                    <option value="">---------------------------------------------</option>
                                                     @foreach ($categories as $category)
 														<option value="{{ $category->id }}">{{ $category->name }}</option>
 													@endforeach
@@ -45,7 +47,7 @@
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="kode">Kode <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id="kode" name="kode" required="required" class="form-control ">
+												<input type="text" id="kode" name="kode" required="required" class="form-control" value="{{ $data->kode }}">
 											</div>
 										</div>
 
@@ -53,7 +55,7 @@
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="name">Nama <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id="name" name="name" required="required" class="form-control ">
+												<input type="text" id="name" name="name" required="required" class="form-control " value="{{ $data->name }}">
 											</div>
 										</div>
 
@@ -61,7 +63,7 @@
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="ukuran">Ukuran
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id="ukuran" name="ukuran" class="form-control ">
+												<input type="text" id="ukuran" name="ukuran" class="form-control " value="{{ $data->ukuran }}">
 											</div>
 										</div>
 
@@ -69,6 +71,7 @@
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="foto">Foto 
 											</label>
 											<div class="col-md-6 col-sm-6 ">
+                                                <img src="{{ url('storage/foto_asset/' . $data->foto) }}" alt="" width="100px">
 												<input type="file" id="foto" name="foto" class="form-control ">
 											</div>
 										</div>
@@ -78,7 +81,7 @@
 											<div class="col-md-6 col-sm-6 offset-md-3">
                                                 <a href="{{ route('assetasset.index') }}" class="btn btn-info">Batal</a>
 												<button class="btn btn-info" type="reset">Reset</button>
-												<button type="submit" class="btn btn-success">Simpan</button>
+												<button type="submit" class="btn btn-success">Update</button>
 											</div>
 										</div>
 
