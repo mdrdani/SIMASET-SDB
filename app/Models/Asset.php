@@ -27,4 +27,9 @@ class Asset extends Model
     {
         return $this->hasMany(AssetHistory::class);
     }
+
+    public function asset_seris()
+    {
+        return $this->hasMany(AssetSeri::class);
+    }
 }

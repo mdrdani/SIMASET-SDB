@@ -45,4 +45,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(AssetHistory::class);
     }
+
+    public function asset_seri_histories()
+    {
+        return $this->hasMany(AssetSeriHistory::class);
+    }
 }

@@ -6,20 +6,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class SumberDana extends Model
+class AssetSeriHistory extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name'
+        'assets_seris_id','users_id','method'
     ];
 
     protected $hidden = [
 
     ];
 
-    public function asset_seris ()
+    public function asset_seris()
     {
-        return $this->hasMany(AssetSeri::class);
+        return $this->belongsTo(AssetSeri::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
     }
 }

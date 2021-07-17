@@ -23,4 +23,8 @@ class SubLokasiDua extends Model
         return $this->belongsTo(SubLokasi::class);
     }
 
+    public function asset_seris()
+    {
+        return $this->hasMany(AssetSeri::class);
+    }
 }

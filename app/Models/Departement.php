@@ -17,4 +17,9 @@ class Departement extends Model
     protected $hidden = [
 
     ];
+
+    public function asset_seris()
+    {
+        return $this->hasMany(AssetSeri::class);
+    }
 }

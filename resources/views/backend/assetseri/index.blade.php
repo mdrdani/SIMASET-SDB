@@ -23,7 +23,7 @@
         <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Asset Seri<small>Data Lengkap</small></h2>
+                    <h2>Asset Seri {{ $assets->name }}<small>Data Lengkap</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -34,7 +34,7 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                      <a href="{{ route('assetassetseri.create') }}" class="btn btn-sm btn-info mb-2">Tambah Data</a>
+                      <a href="{{ route('assetassetseri.create', ['id' => $assets->id]) }}" class="btn btn-sm btn-info mb-2">Tambah Data</a>
                       <a href="{{ route('assetasset.index') }}" class="btn btn-sm btn-info mb-2">Kembali</a>
                     <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                       <thead>
@@ -49,18 +49,20 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td>HSJDG1122</td>
-                          <td>Gedung B Lantai 2</td>
-                          <td>Baik</td>
-                          <td>12 Desember 2020</td>
-                          <td>SDHJNJ234</td>
+                        @foreach ($datas as $index => $data)
+                            <tr>
+                          <td>{{ $index+1 }}</td>
+                          <td>{{ $data->assets->kode }}-{{ $data->nomor_seri }}</td>
+                          <td>{{ $data->sub_lokasi_duas->name }}</td>
+                          <td>{{ $data->kondisi }}</td>
+                          <td>{{ Carbon\Carbon::parse($data->tanggal_beli)->locale('id')->isoFormat('LL') }}</td>
+                          <td>{{ $data->sn }}</td>
                           <td>
-                            <a href="#" class="btn btn-info btn-sm">Lihat</a>
+                            <a href="{{ route('assetassetseri.show', [$data->assets->id, $data->id]) }}" class="btn btn-info btn-sm">Lihat</a>
                             <a href="#" class="btn btn-info btn-sm">Edit</a>
                             <a href="#" class="btn btn-info btn-sm">Hapus</a></td>
                         </tr>
+                        @endforeach
 
                       </tbody>
                     </table>

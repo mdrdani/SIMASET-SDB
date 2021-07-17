@@ -45,4 +45,5 @@ Route::name('asset')->middleware('auth')->group(function() {
     Route::resource('/kategori', KategoriController::class);
     Route::resource('/asset', AssetController::class);
     Route::resource('/asset/{id}/assetseri', AssetSeriController::class);
+    Route::get('/ajax/lokasi/search', [AssetSeriController::class, 'ajaxsearch']);
 });
