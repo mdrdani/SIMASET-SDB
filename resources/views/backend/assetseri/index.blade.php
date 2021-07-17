@@ -59,8 +59,12 @@
                           <td>{{ $data->sn }}</td>
                           <td>
                             <a href="{{ route('assetassetseri.show', [$data->assets->id, $data->id]) }}" class="btn btn-info btn-sm">Lihat</a>
-                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                            <a href="#" class="btn btn-info btn-sm">Hapus</a></td>
+                            <form action="{{ route('assetassetseri.destroy', ['id' => $data->assets->id, 'assetseri' => $data->id]) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin Menghapus Data ini?')">
+                            @csrf
+                              <input type="hidden" value="DELETE" name="_method">
+                              <input type="submit" class="btn btn-info btn-sm" value="Hapus">
+                            </form>
+                          </td>
                         </tr>
                         @endforeach
 

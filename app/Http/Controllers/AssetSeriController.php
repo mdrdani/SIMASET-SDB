@@ -138,8 +138,22 @@ class AssetSeriController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $assetseri)
     {
         //
+        $asset = Asset::findOrFail($id);
+        $item = AssetSeri::findOrFail($assetseri);
+        $item->delete();
+
+        //log
+        $log = new AssetSeriHistory;
+        $log->asset_seris_id = $assetseri;
+        $log->users_id = Auth::user()->id;
+        $log->method = 'Delete Data';
+        $log->save();
+
+         Toastr::error('Delete Data Sukses', 'Success');
+        return redirect()->route('assetassetseri.index', ['id' => $asset->id]);
+
     }
 }
