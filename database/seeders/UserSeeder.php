@@ -24,5 +24,12 @@ class UserSeeder extends Seeder
             'roles' => "ADMIN",
             'created_at' =>  Carbon::now()->format('Y-m-d H:i:s'),
         ]);
+        DB::table('users')->insert([
+            'name' => 'User Satu',
+            'email' => 'user@darmabangsa.sch.id',
+            'password' => bcrypt('secret123'),
+            'roles' => "ADMIN",
+            'created_at' =>  Carbon::now()->format('Y-m-d H:i:s'),
+        ]);
     }
 }

@@ -3,6 +3,10 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
+
+                  <li>
+                    <a href="{{ route('home') }}"><i class="fa fa-home"></i> Dashboard </a>
+								</li>
                   
                   {{-- Referensi --}}
                   <li><a><i class="fa fa-edit"></i> Referensi <span class="fa fa-chevron-down"></span></a>
@@ -19,7 +23,6 @@
                     <ul class="nav child_menu">
                       <li><a href="{{ route('assetkategori.index') }}">Kategori</a></li>
                       <li><a href="{{ route('assetasset.index') }}">Asset</a></li>
-                      <li><a href="form_validation.html">Penyusutan</a></li>
                     </ul>
                   </li>
                   {{-- Asset --}}

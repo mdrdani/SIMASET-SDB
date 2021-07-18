@@ -100,12 +100,10 @@ class AssetSeriController extends Controller
     public function show($id, $assetseri)
     {
         //
-        $assetseri = AssetSeri::findOrFail($id);
-        $assetlog = AssetSeriHistory::findOrFail($id);
+        $assetseri = AssetSeri::find($assetseri);
         return view('backend.assetseri.show', 
         [
             "asset" => $assetseri, 
-            "assetlog" => $assetlog
         ]);
     }
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\SubLokasiController;
 use App\Http\Controllers\DepartemenController;
 use App\Http\Controllers\SumberDanaController;
 use App\Http\Controllers\SubLokasiDuaController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,16 @@ use App\Http\Controllers\SubLokasiDuaController;
 |
 */
 
+
 Route::get('/', function () {
-    return view('auth.login');
+
+    if (Auth::user() != NULL) {
+        # code...
+        return view('home');
+    } else {
+        # code...
+        return view('auth.login');
+    }
 });
 
 Auth::routes([

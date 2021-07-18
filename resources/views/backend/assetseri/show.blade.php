@@ -15,7 +15,7 @@
 						<div class="col-md-12 col-sm-12 ">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Asset Seri <b>{{ $asset->merk_judul }}</b> <br>  <span>Di Buat Oleh : {{ $assetlog->users->name }}</span></h2>
+									<h2>Asset Seri <b>{{ $asset->merk_judul }}</b> <br></h2>
 									<ul class="nav navbar-right panel_toolbox">
                                         <a href="{{ route('assetassetseri.index', $asset->assets->id) }}" class="btn btn-sm btn-info mb-2">Kembali</a>
 										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
