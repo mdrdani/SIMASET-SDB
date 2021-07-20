@@ -53,6 +53,7 @@ Route::name('referensi')->middleware('auth')->group(function() {
 Route::name('asset')->middleware('auth')->group(function() {
     Route::resource('/kategori', KategoriController::class);
     Route::resource('/asset', AssetController::class);
+    Route::get('/ajax/kategori/search', [AssetController::class, 'ajaxsearch']);
     Route::resource('/asset/{id}/assetseri', AssetSeriController::class);
     Route::get('/ajax/lokasi/search', [AssetSeriController::class, 'ajaxsearch']);
 });

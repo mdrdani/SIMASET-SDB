@@ -25,7 +25,7 @@ class AssetSeriRequest extends FormRequest
     {
         return [
             //
-            'nomor_seri' => 'required|min:1|unique:asset_seris,nomor_seri',
+            'nomor_seri' => 'required|min:1|string',
             'nomor_pembelian' => 'nullable',
             'sub_lokasi_duas_id' => 'required',
             'sumber_danas_id' => 'required',

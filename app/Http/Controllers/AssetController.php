@@ -164,4 +164,12 @@ class AssetController extends Controller
         Toastr::error('Delete Data Sukses', 'Success');
         return redirect()->route('assetasset.index');
     }
+
+    public function ajaxsearch(Request $request)
+    {
+        $keyword = $request->get("q");
+        $kategori = Categories::where("name", "LIKE", "%$keyword%")->get();
+
+        return $kategori;
+    }
 }

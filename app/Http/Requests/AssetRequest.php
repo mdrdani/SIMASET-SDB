@@ -25,7 +25,7 @@ class AssetRequest extends FormRequest
     {
         return [
             //
-            'kode' => 'required|string',
+            'kode' => 'required|string|min:1|unique:assets,kode',
             'name' => 'required|string|min:2',
             'ukuran' => 'nullable|string',
             'foto' => 'nullable|mimes:png,jpg,jpeg|max:3024'

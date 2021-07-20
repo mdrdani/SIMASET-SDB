@@ -16,7 +16,7 @@ class CreateAssetSerisTable extends Migration
         Schema::create('asset_seris', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('assets_id'); 
-            $table->string('nomor_seri')->unique();
+            $table->string('nomor_seri');
             $table->string('nomor_pembelian')->nullable();
             $table->unsignedBigInteger('sub_lokasi_duas_id');
             $table->unsignedBigInteger('sumber_danas_id');
