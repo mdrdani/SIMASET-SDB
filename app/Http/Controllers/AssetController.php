@@ -21,7 +21,7 @@ class AssetController extends Controller
     public function index()
     {
         //
-        $datas = Asset::orderBy("created_at", "desc")->get();
+        $datas = Asset::orderBy("kode", "desc")->get();
         return view('backend.asset.index', ['datas' => $datas]);
     }
 

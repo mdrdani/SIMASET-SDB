@@ -42,7 +42,10 @@
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="kode">Kode <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id="kode" name="kode" required="required" class="form-control ">
+												<input type="text" id="kode" name="kode" required="required" class="form-control {{ $errors->first('kode') ? "is-invalid" : "" }}" value="{{ old('kode') }}">
+												<div class="invalid-feedback">
+													{{ $errors->first('kode') }}
+												</div>
 											</div>
 										</div>
 

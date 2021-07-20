@@ -15,7 +15,7 @@
 						<div class="col-md-12 col-sm-12 ">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Sub Lokasi<small>form input</small></h2>
+									<h2>Sub Lokasi {{ $data->name }}<small>form input</small></h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 										</li>

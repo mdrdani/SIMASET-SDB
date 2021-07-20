@@ -24,7 +24,7 @@ class AssetSeriController extends Controller
     {
         //
         $assets = Asset::findOrFail($id);
-        $datas = AssetSeri::where('assets_id', $id)->orderBy('created_at', 'desc')->get();
+        $datas = AssetSeri::where('assets_id', $id)->orderBy('nomor_seri', 'desc')->get();
         return view('backend.assetseri.index', ['assets' => $assets, 'datas' => $datas]);
     }
 

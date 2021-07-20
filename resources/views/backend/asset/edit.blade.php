@@ -30,15 +30,14 @@
                     					@csrf
                                         @method('PUT')
 										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="ketegori">Kategori <span class="required">*</span>
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="kategori">Kategori <span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<select name="categories_id" id="ketegori" class="select2_group form-control">
+												<select name="categories_id" id="kategori" class="select2_group form-control">
                                                     <option value="{{ $data->categories->id }}">{{ $data->categories->name }}</option>
-                                                    <option value="">---------------------------------------------</option>
-                                                    @foreach ($categories as $category)
-														<option value="{{ $category->id }}">{{ $category->name }}</option>
-													@endforeach
+                                                    <option value="">
+														---------------------------------------------
+													</option>
                                                 </select>
 											</div>
 										</div>
@@ -91,4 +90,21 @@
 						</div>
 					</div>
     </div>
+@endsection
+
+@section('js')
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+	<script>
+		$('#kategori').select2({
+			ajax: {
+				url : '/ajax/kategori/search',
+				processResults: function(data) {
+					return {
+						results: data.map(function(item) {return {id: item.id, text:item.name}})
+					}
+				}
+			}
+		});
+	</script>
 @endsection
