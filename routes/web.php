@@ -7,6 +7,7 @@ use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SubLokasiController;
 use App\Http\Controllers\DepartemenController;
+use App\Http\Controllers\PembaharuanController;
 use App\Http\Controllers\SumberDanaController;
 use App\Http\Controllers\SubLokasiDuaController;
 use Illuminate\Support\Facades\Auth;
@@ -56,4 +57,9 @@ Route::name('asset')->middleware('auth')->group(function() {
     Route::get('/ajax/kategori/search', [AssetController::class, 'ajaxsearch']);
     Route::resource('/asset/{id}/assetseri', AssetSeriController::class);
     Route::get('/ajax/lokasi/search', [AssetSeriController::class, 'ajaxsearch']);
+
+    // Pembaharuan Asset
+    Route::get('/pembaharuan', [PembaharuanController::class, 'index'])->name('pembaharuanindex');
+    Route::get('/pembaharuan/{id}', [PembaharuanController::class, 'edit'])->name('pembaharuanedit');
+    Route::put('/pembaharuan/{id}', [PembaharuanController::class,'update'])->name('pembaharuanupdate');
 });
