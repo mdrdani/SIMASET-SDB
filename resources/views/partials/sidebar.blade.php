@@ -31,7 +31,7 @@
                   <li><a><i class="fa fa-edit"></i> Update Asset <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{ route('assetpembaharuanindex') }}">Pembaharuan</a></li>
-                      <li><a href="form_advanced.html">Pemindahan</a></li>
+                      <li><a href="{{ route('assetpemindahan.index') }}">Pemindahan</a></li>
                       <li><a href="form_validation.html">Perbaikan</a></li>
                       <li><a href="form_validation.html">Pemusnahan</a></li>
                       <li><a href="form_validation.html">Riwayat</a></li>
