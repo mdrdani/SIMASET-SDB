@@ -9,6 +9,7 @@ use App\Http\Controllers\SubLokasiController;
 use App\Http\Controllers\DepartemenController;
 use App\Http\Controllers\PembaharuanController;
 use App\Http\Controllers\PemindahanController;
+use App\Http\Controllers\PerbaikanController;
 use App\Http\Controllers\SumberDanaController;
 use App\Http\Controllers\SubLokasiDuaController;
 use Illuminate\Support\Facades\Auth;
@@ -68,4 +69,10 @@ Route::name('asset')->middleware('auth')->group(function() {
     Route::get('/pemindahan', [PemindahanController::class, 'index'])->name('pemindahan.index');
     Route::get('/pemindahan/{id}', [PemindahanController::class, 'edit'])->name('pemindahan.edit');
     Route::put('/pemindahan/{id}', [PemindahanController::class, 'update'])->name('pemindahan.update');
+
+    // Perbaikan Asset
+    Route::get('/perbaikan', [PerbaikanController::class, 'index'])->name('perbaikan.index');
+    Route::get('/perbaikan/{id}', [PerbaikanController::class, 'edit'])->name('perbaikan.edit');
+    Route::put('/perbaikan/{id}', [PerbaikanController::class, 'update'])->name('perbaikan.update');
+
 });

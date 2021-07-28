@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-    Pemindahan Asset
+    Perbaikan Asset
 @endsection
 
 @section('body')
@@ -26,25 +26,17 @@
 								</div>
 								<div class="x_content">
 									<br />
-									<form  action="{{ route('assetpemindahan.update', $assets->id) }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
+									<form  action="{{ route('assetperbaikan.update', $assets->id) }}" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
                     					@csrf
                                         @method('PUT')
 
-										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="lokasi">Lokasi <span class="required">*</span>
-											</label>
-											<div class="col-md-6 col-sm-6 ">
-												 <select name="sub_lokasi_duas_id" id="lokasi"  class="select2_group form-control">
-                                                     <option value="{{ $assets->sub_lokasi_duas_id }}">{{ $assets->sub_lokasi_duas->name }}</option>
-                                                 </select>
-											</div>
-										</div>
+										
 
 										<div class="item form-group">
-											<label class="col-form-label col-md-3 col-sm-3 label-align" for="tanggal_beli">Tanggal Pindah
+											<label class="col-form-label col-md-3 col-sm-3 label-align" for="tgl_perbaikan">Tanggal Perbaikan
 											</label>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="date" id="tgl_pindah" name="tgl_pindah" class="form-control ">
+												<input type="date" id="tgl_perbaikan" name="tgl_perbaikan" class="form-control ">
 											</div>
 										</div>
 
@@ -59,7 +51,7 @@
 										<div class="ln_solid"></div>
 										<div class="item form-group">
 											<div class="col-md-6 col-sm-6 offset-md-3">
-                                                <a href="{{ route('assetpemindahan.index') }}" class="btn btn-info">Batal</a>
+                                                <a href="{{ route('assetperbaikan.index') }}" class="btn btn-info">Batal</a>
 												<button class="btn btn-info" type="reset">Reset</button>
 												<button type="submit" class="btn btn-success">Update</button>
 											</div>
@@ -71,21 +63,4 @@
 						</div>
 					</div>
     </div>
-@endsection
-
-@section('js')
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-	<script>
-		$('#lokasi').select2({
-			ajax: {
-				url : '/ajax/lokasi/search',
-				processResults: function(data) {
-					return {
-						results: data.map(function(item) {return {id: item.id, text:item.name}})
-					}
-				}
-			}
-		});
-	</script>
 @endsection
