@@ -9,6 +9,7 @@ use App\Http\Controllers\SubLokasiController;
 use App\Http\Controllers\DepartemenController;
 use App\Http\Controllers\PembaharuanController;
 use App\Http\Controllers\PemindahanController;
+use App\Http\Controllers\PemusnahanController;
 use App\Http\Controllers\PerbaikanController;
 use App\Http\Controllers\SumberDanaController;
 use App\Http\Controllers\SubLokasiDuaController;
@@ -75,4 +76,7 @@ Route::name('asset')->middleware('auth')->group(function() {
     Route::get('/perbaikan/{id}', [PerbaikanController::class, 'edit'])->name('perbaikan.edit');
     Route::put('/perbaikan/{id}', [PerbaikanController::class, 'update'])->name('perbaikan.update');
 
+    // Pemusnahan
+    Route::get('/pemusnahan', [PemusnahanController::class, 'trash'])->name('pemusnahan.index');
+    Route::post('/pemusnahan/{id}', [PemusnahanController::class, 'restore'])->name('pemusnahan.restore');
 });

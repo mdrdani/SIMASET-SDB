@@ -33,7 +33,7 @@
                       <li><a href="{{ route('assetpembaharuanindex') }}">Pembaharuan</a></li>
                       <li><a href="{{ route('assetpemindahan.index') }}">Pemindahan</a></li>
                       <li><a href="{{ route('assetperbaikan.index') }}">Perbaikan</a></li>
-                      <li><a href="form_validation.html">Pemusnahan</a></li>
+                      <li><a href="{{ route('assetpemusnahan.index') }}">Pemusnahan</a></li>
                       <li><a href="form_validation.html">Riwayat</a></li>
                       <li><a href="form_validation.html">Info Nomor Seri</a></li>
                     </ul>
