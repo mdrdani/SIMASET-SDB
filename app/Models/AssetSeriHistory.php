@@ -27,4 +27,9 @@ class AssetSeriHistory extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function sub_lokasi_duas()
+    {
+        return $this->belongsTo(SubLokasiDua::class);
+    }
 }

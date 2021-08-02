@@ -27,4 +27,9 @@ class SubLokasiDua extends Model
     {
         return $this->hasMany(AssetSeri::class);
     }
+
+    public function asset_seri_histories()
+    {
+        return $this->hasMany(AssetSeriHistory::class);
+    }
 }

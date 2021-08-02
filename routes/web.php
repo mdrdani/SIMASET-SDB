@@ -11,6 +11,7 @@ use App\Http\Controllers\PembaharuanController;
 use App\Http\Controllers\PemindahanController;
 use App\Http\Controllers\PemusnahanController;
 use App\Http\Controllers\PerbaikanController;
+use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\SumberDanaController;
 use App\Http\Controllers\SubLokasiDuaController;
 use Illuminate\Support\Facades\Auth;
@@ -76,7 +77,11 @@ Route::name('asset')->middleware('auth')->group(function() {
     Route::get('/perbaikan/{id}', [PerbaikanController::class, 'edit'])->name('perbaikan.edit');
     Route::put('/perbaikan/{id}', [PerbaikanController::class, 'update'])->name('perbaikan.update');
 
-    // Pemusnahan
+    // Pemusnahan Asset
     Route::get('/pemusnahan', [PemusnahanController::class, 'trash'])->name('pemusnahan.index');
     Route::post('/pemusnahan/{id}', [PemusnahanController::class, 'restore'])->name('pemusnahan.restore');
+
+    // Riwayat Asset
+    Route::get('/assetseri', [RiwayatController::class, 'index'])->name('riwayat.index');
+    Route::get('/assetseri/{id}/riwayat', [RiwayatController::class, 'show'])->name('riwayat.show');
 });
