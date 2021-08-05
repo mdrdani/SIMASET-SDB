@@ -30,6 +30,6 @@ class Asset extends Model
 
     public function asset_seris()
     {
-        return $this->hasMany(AssetSeri::class);
+        return $this->hasMany(AssetSeri::class, 'assets_id');
     }
 }

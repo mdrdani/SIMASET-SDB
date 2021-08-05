@@ -7,6 +7,7 @@ use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SubLokasiController;
 use App\Http\Controllers\DepartemenController;
+use App\Http\Controllers\InformasiSeriController;
 use App\Http\Controllers\PembaharuanController;
 use App\Http\Controllers\PemindahanController;
 use App\Http\Controllers\PemusnahanController;
@@ -84,4 +85,7 @@ Route::name('asset')->middleware('auth')->group(function() {
     // Riwayat Asset
     Route::get('/assetseri', [RiwayatController::class, 'index'])->name('riwayat.index');
     Route::get('/assetseri/{id}/riwayat', [RiwayatController::class, 'show'])->name('riwayat.show');
+
+    // Informasi Nomor Seri
+    Route::get('/informasiseri', [InformasiSeriController::class, 'index'])->name('informasiseri.index');
 });
