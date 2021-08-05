@@ -18,8 +18,8 @@ class RiwayatController extends Controller
 
     public function show($id)
     {
+        $assetseri = AssetSeri::findOrFail($id);
         $history = AssetSeriHistory::where('asset_seris_id', $id)->get();
-        // dd($history);
-        return view('backend.riwayat.show', ['histories' => $history]);
+        return view('backend.riwayat.show', ['histories' => $history, 'assetseri' => $assetseri]);
     }
 }
