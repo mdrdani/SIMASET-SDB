@@ -82,7 +82,7 @@
                                                 @if ($asset->harga_beli == NULL)
                                                     <h2>Rp. -</h2>
                                                 @else
-                                                    <h2>Rp. {{ $asset->harga_beli }}</h2>
+                                                    <h2>Rp. @currency($asset->harga_beli)</h2>
                                                 @endif
 											</div>
 										</div>
