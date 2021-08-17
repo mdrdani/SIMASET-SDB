@@ -44,7 +44,7 @@
                   <li><a><i class="fa fa-bar-chart-o"></i> Laporan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="chartjs.html">Nilai Jumlah Asset</a></li>
-                      <li><a href="chartjs2.html">Lokasi Asset</a></li>
+                      <li><a href="{{ route('assetlokasiasset.filter') }}">Lokasi Asset</a></li>
                       <li><a href="morisjs.html">Sumber Dana Asset</a></li>
                       <li><a href="echarts.html">Kondisi Asset</a></li>
                       <li><a href="other_charts.html">Asset Transaksi</a></li>

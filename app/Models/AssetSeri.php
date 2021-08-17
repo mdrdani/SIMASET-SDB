@@ -38,7 +38,7 @@ class AssetSeri extends Model
 
     public function sub_lokasi_duas()
     {
-        return $this->belongsTo(SubLokasiDua::class);
+        return $this->belongsTo(SubLokasiDua::class, 'sub_lokasi_duas_id');
     }
 
     public function sumber_danas()

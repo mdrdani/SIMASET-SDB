@@ -18,14 +18,14 @@ class SubLokasiDua extends Model
 
     ];
 
-    public function sublokasi()
+    public function sublokasis()
     {
         return $this->belongsTo(SubLokasi::class);
     }
 
     public function asset_seris()
     {
-        return $this->hasMany(AssetSeri::class);
+        return $this->hasMany(AssetSeri::class, 'sub_lokasi_duas_id');
     }
 
     public function asset_seri_histories()
